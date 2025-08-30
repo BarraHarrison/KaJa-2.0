@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import StartButton from "@/components/common/StartButton";
 import { useLocation } from "wouter";
 
 export default function Landing() {
@@ -30,13 +30,7 @@ export default function Landing() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
             >
-                <Button
-                    size="lg"
-                    className="bg-cyan-500 hover:bg-cyan-600 text-white text-xl px-10 py-6 rounded-2xl shadow-lg"
-                    onClick={() => setLocation("/feed")}
-                >
-                    시작하기
-                </Button>
+                <StartButton />
             </motion.div>
         </div>
     );
