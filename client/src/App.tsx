@@ -1,43 +1,27 @@
-import { Switch, Route, Link } from "wouter";
+import { Route, Switch } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 
-import Home from "./pages/home";
-import Challenge from "./pages/challenge";
-import Groups from "./pages/groups";
-import Profile from "./pages/profile";
+// Pages
 import Landing from "./pages/landing";
-
-import BottomNavigation from "./components/BottomNavigation";
+import Home from "./pages/home";
+// Later: import Challenges from "./pages/challenges";
+// Later: import Profile from "./pages/profile";
 
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="min-h-screen flex flex-col bg-gray-50">
-                {/* Main Content */}
-                <div className="flex-1">
-                    <Switch>
-                        <Route path="/" component={Landing} />
-                        <Route path="/home" component={Home} />
-                        <Route path="/challenges" component={Challenge} />
-                        <Route path="/groups" component={Groups} />
-                        <Route path="/profile" component={Profile} />
-                        <Route>
-                            {/* 404 fallback */}
-                            <div className="flex flex-col items-center justify-center h-full p-8 text-center">
-                                <h1 className="text-2xl font-bold text-red-500">404</h1>
-                                <p className="text-gray-600">Page not found.</p>
-                                <Link href="/home" className="text-blue-500 underline mt-4">
-                                    Go Home
-                                </Link>
-                            </div>
-                        </Route>
-                    </Switch>
-                </div>
+            <Switch>
+                {/* Landing page (default route) */}
+                <Route path="/" component={Landing} />
 
-                {/* Bottom Navigation */}
-                <BottomNavigation />
-            </div>
+                {/* Feed page */}
+                <Route path="/home" component={Home} />
+
+                {/* Future routes */}
+                {/* <Route path="/challenges" component={Challenges} /> */}
+                {/* <Route path="/profile" component={Profile} /> */}
+            </Switch>
         </QueryClientProvider>
     );
 }
