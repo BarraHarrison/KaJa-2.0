@@ -15,8 +15,8 @@ function App() {
                 {/* Landing page (default route) */}
                 <Route path="/" component={Landing} />
 
-                {/* Feed page */}
-                <Route path="/home" component={Home} />
+                {/* Feed page (mapped to /feed for consistency) */}
+                <Route path="/feed" component={Home} />
 
                 {/* Future routes */}
                 {/* <Route path="/challenges" component={Challenges} /> */}

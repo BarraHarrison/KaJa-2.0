@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import StartButton from "@/components/common/StartButton";
-import { useLocation } from "wouter";
 
 export default function Landing() {
-    const [, setLocation] = useLocation();
-
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-cyan-100 to-white text-center px-4">
             <motion.h1
@@ -30,7 +27,8 @@ export default function Landing() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
             >
-                <StartButton />
+                {/* StartButton handles navigation itself via href */}
+                <StartButton href="/feed" label="시작하기" />
             </motion.div>
         </div>
     );
