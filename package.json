@@ -59,5 +59,9 @@
     "wouter": "^3.3.5",
     "zod": "^3.24.2",
     "zod-validation-error": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.2",
+    "vite": "^7.1.4"
   }
 }
