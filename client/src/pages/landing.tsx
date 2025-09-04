@@ -29,6 +29,14 @@ export default function Landing() {
             >
                 {/* StartButton handles navigation itself via href */}
                 <StartButton href="/feed" label="시작하기" />
+
+                {/* Temporary debug button */}
+                <button
+                    className="mt-4 text-sm text-gray-500 underline"
+                    onClick={() => setLocation("/feed")}
+                >
+                    Debug: Go to Feed
+                </button>
             </motion.div>
         </div>
     );

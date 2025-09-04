@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "wouter";
 
+console.log("📍 Feed page mounted!");
+
 export default function Home() {
     // Placeholder feed items
     const dummyFeed = [

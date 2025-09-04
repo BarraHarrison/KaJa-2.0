@@ -17,6 +17,7 @@ export default function StartButton({
     const [, setLocation] = useLocation();
 
     const handleClick = (): void => {
+        console.log("✅ StartButton clicked!");
         if (onClick) {
             onClick();
         } else if (href) {
