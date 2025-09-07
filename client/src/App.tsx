@@ -4,9 +4,9 @@ import { queryClient } from "./lib/queryClient";
 
 import Landing from "./pages/landing";
 import Home from "./pages/home";
-// Later: import Challenges from "./pages/challenges";
-// Later: import Groups from "./pages/groups";
-// Later: import Profile from "./pages/profile";
+import Challenges from "./pages/challenges";
+import Groups from "./pages/groups";
+import Profile from "./pages/profile";
 
 import BottomNavigation from "./components/common/BottomNavigation";
 
@@ -20,11 +20,10 @@ function App() {
                 <Switch>
                     <Route path="/" component={Landing} />
                     <Route path="/feed" component={Home} />
+                    <Route path="/challenges" component={Challenges} />
+                    <Route path="/groups" component={Groups} />
+                    <Route path="/profile" component={Profile} />
 
-                    {/* Future routes */}
-                    {/* <Route path="/challenges" component={Challenges} /> */}
-                    {/* <Route path="/groups" component={Groups} /> */}
-                    {/* <Route path="/profile" component={Profile} /> */}
                 </Switch>
 
                 {showBottomNav && <BottomNavigation />}
