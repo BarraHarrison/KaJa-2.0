@@ -1,35 +1,13 @@
 import React from "react";
-import { User, Clock, MapPin } from "lucide-react";
-
-console.log("📍 Feed page mounted!");
+import { Clock, MapPin } from "lucide-react";
+import FeedCard from "../components/ui/FeedCard";
+import UserAvatar from "../components/ui/UserAvatar";
 
 export default function Home() {
-    // Placeholder feed items
     const dummyFeed = [
-        {
-            id: 1,
-            user: "Alex",
-            ride: "Morning ride 🚴‍♂️",
-            distance: "25 km",
-            location: "Han River",
-            time: "2h ago",
-        },
-        {
-            id: 2,
-            user: "Jamie",
-            ride: "Climbed Namhansanseong 🏔️",
-            distance: "12 km",
-            location: "Namhansanseong",
-            time: "5h ago",
-        },
-        {
-            id: 3,
-            user: "Soojin",
-            ride: "Night spin 🌙",
-            distance: "15 km",
-            location: "Gangnam",
-            time: "Yesterday",
-        },
+        { id: 1, user: "Alex", ride: "Morning ride 🚴‍♂️", distance: "25 km", location: "Han River", time: "2h ago" },
+        { id: 2, user: "Jamie", ride: "Climbed Namhansanseong 🏔️", distance: "12 km", location: "Namhansanseong", time: "5h ago" },
+        { id: 3, user: "Soojin", ride: "Night spin 🌙", distance: "15 km", location: "Gangnam", time: "Yesterday" },
     ];
 
     return (
@@ -38,14 +16,9 @@ export default function Home() {
 
             <div className="space-y-4 px-6">
                 {dummyFeed.map((post) => (
-                    <div
-                        key={post.id}
-                        className="rounded-2xl shadow-md bg-white p-4 border"
-                    >
+                    <FeedCard key={post.id}>
                         <div className="flex items-center space-x-3 mb-2">
-                            <div className="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center">
-                                <User className="w-6 h-6 text-blue-600" />
-                            </div>
+                            <UserAvatar />
                             <p className="font-semibold">{post.user}</p>
                         </div>
 
@@ -62,7 +35,7 @@ export default function Home() {
                                 <span>{post.time}</span>
                             </div>
                         </div>
-                    </div>
+                    </FeedCard>
                 ))}
             </div>
         </div>
