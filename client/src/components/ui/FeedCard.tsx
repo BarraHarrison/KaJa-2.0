@@ -8,13 +8,10 @@ interface FeedCardProps {
     rideDetails: string;
 }
 
-export const FeedCard: React.FC<FeedCardProps> = ({
-    username,
-    rideTitle,
-    rideDetails,
-}) => {
+const FeedCard: React.FC<FeedCardProps> = ({ username, rideTitle, rideDetails }) => {
     const [chapeauCount, setChapeauCount] = useState(0);
     const [hasChapeaued, setHasChapeaued] = useState(false);
+    const [showCommentBox, setShowCommentBox] = useState(false);
 
     const toggleChapeau = () => {
         if (hasChapeaued) {
@@ -26,8 +23,8 @@ export const FeedCard: React.FC<FeedCardProps> = ({
         }
     };
 
-    const handleComment = () => {
-        alert("Comment feature coming soon! 🚧");
+    const toggleCommentBox = () => {
+        setShowCommentBox((prev) => !prev);
     };
 
     const handleShare = () => {
@@ -54,7 +51,7 @@ export const FeedCard: React.FC<FeedCardProps> = ({
                     <span>{chapeauCount}</span>
                 </button>
 
-                <button onClick={handleComment} className="flex items-center space-x-1">
+                <button onClick={toggleCommentBox} className="flex items-center space-x-1">
                     <span>💬 코멘트</span>
                 </button>
 
@@ -62,6 +59,18 @@ export const FeedCard: React.FC<FeedCardProps> = ({
                     <span>🔗 공유</span>
                 </button>
             </div>
+
+            {showCommentBox && (
+                <div className="mt-3">
+                    <input
+                        type="text"
+                        placeholder="댓글을 입력하세요..."
+                        className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                </div>
+            )}
         </div>
     );
 };
+
+export default FeedCard;
