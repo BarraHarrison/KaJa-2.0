@@ -1,16 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import { UserAvatar } from "../components/ui/UserAvatar";
 
-type FeedCardProps = {
-    children: React.ReactNode;
-    className?: string;
-};
 
-export default function FeedCard({ children, className = "" }: FeedCardProps) {
+interface FeedCardProps {
+    username: string;
+    rideTitle: string;
+    rideDetails: string;
+}
+
+export const FeedCard: React.FC<FeedCardProps> = ({
+    username,
+    rideTitle,
+    rideDetails,
+}) => {
+    const [chapeauCount, setChapeauCount] = useState(0);
+    const [hasChapeaued, setHasChapeaued] = useState(false);
+
+    const toggleChapeau = () => {
+        if (hasChapeaued) {
+            setChapeauCount((prev) => prev - 1);
+            setHasChapeaued(false);
+        } else {
+            setChapeauCount((prev) => prev + 1);
+            setHasChapeaued(true);
+        }
+    };
+
+    const handleComment = () => {
+        alert("Comment feature coming soon! 🚧");
+    };
+
+    const handleShare = () => {
+        alert("Share feature coming soon! 🚧");
+    };
+
     return (
-        <div
-            className={`rounded-2xl shadow-md bg-white p-4 border ${className}`}
-        >
-            {children}
+        <div className="bg-white rounded-2xl shadow-md p-4 mb-4">
+            <div className="flex items-center mb-2">
+                <UserAvatar username={username} />
+                <span className="ml-2 font-semibold">{username}</span>
+            </div>
+
+            <h3 className="text-lg font-bold">{rideTitle}</h3>
+            <p className="text-gray-600">{rideDetails}</p>
+
+            <div className="flex justify-around mt-4 text-gray-700">
+                <button
+                    onClick={toggleChapeau}
+                    className={`flex items-center space-x-1 ${hasChapeaued ? "text-blue-600 font-semibold" : ""
+                        }`}
+                >
+                    <span>🎩 Chapeau</span>
+                    <span>{chapeauCount}</span>
+                </button>
+
+                <button onClick={handleComment} className="flex items-center space-x-1">
+                    <span>💬 Comment</span>
+                </button>
+
+                <button onClick={handleShare} className="flex items-center space-x-1">
+                    <span>🔗 Share</span>
+                </button>
+            </div>
         </div>
     );
-}
+};
