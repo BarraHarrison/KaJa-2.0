@@ -12,6 +12,8 @@ const FeedCard: React.FC<FeedCardProps> = ({ username, rideTitle, rideDetails })
     const [chapeauCount, setChapeauCount] = useState(0);
     const [hasChapeaued, setHasChapeaued] = useState(false);
     const [showCommentBox, setShowCommentBox] = useState(false);
+    const [comments, setComments] = useState<string[]>([]);
+    const [newComment, setNewComment] = useState("");
 
     const toggleChapeau = () => {
         if (hasChapeaued) {
@@ -29,6 +31,14 @@ const FeedCard: React.FC<FeedCardProps> = ({ username, rideTitle, rideDetails })
 
     const handleShare = () => {
         alert("Share feature coming soon! 🚧");
+    };
+
+    const handleCommentSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (newComment.trim() !== "") {
+            setComments((prev) => [...prev, newComment]);
+            setNewComment("");
+        }
     };
 
     return (
@@ -62,11 +72,32 @@ const FeedCard: React.FC<FeedCardProps> = ({ username, rideTitle, rideDetails })
 
             {showCommentBox && (
                 <div className="mt-3">
-                    <input
-                        type="text"
-                        placeholder="댓글을 입력하세요..."
-                        className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                    <form onSubmit={handleCommentSubmit} className="flex space-x-2">
+                        <input
+                            type="text"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                            placeholder="댓글을 입력하세요..."
+                            className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <button
+                            type="submit"
+                            className="px-3 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600"
+                        >
+                            등록
+                        </button>
+                    </form>
+
+                    <div className="mt-3 space-y-2">
+                        {comments.map((comment, idx) => (
+                            <div
+                                key={idx}
+                                className="bg-gray-100 rounded-lg px-3 py-2 text-sm text-gray-700"
+                            >
+                                {comment}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
         </div>
