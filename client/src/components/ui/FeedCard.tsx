@@ -50,16 +50,16 @@ export const FeedCard: React.FC<FeedCardProps> = ({
                     className={`flex items-center space-x-1 ${hasChapeaued ? "text-blue-600 font-semibold" : ""
                         }`}
                 >
-                    <span>🎩 Chapeau</span>
+                    <span>🎩 샤포</span>
                     <span>{chapeauCount}</span>
                 </button>
 
                 <button onClick={handleComment} className="flex items-center space-x-1">
-                    <span>💬 Comment</span>
+                    <span>💬 코멘트</span>
                 </button>
 
                 <button onClick={handleShare} className="flex items-center space-x-1">
-                    <span>🔗 Share</span>
+                    <span>🔗 공유</span>
                 </button>
             </div>
         </div>
