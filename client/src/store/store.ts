@@ -10,3 +10,10 @@ type AppState = {
     clearUser: () => void;
 };
 
+export const useAppStore = create<AppState>((set) => ({
+    user: { id: null, name: null },
+
+    setUser: (id, name) => set({ user: { id, name } }),
+
+    clearUser: () => set({ user: { id: null, name: null } }),
+}));
