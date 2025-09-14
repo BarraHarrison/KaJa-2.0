@@ -1,9 +1,11 @@
 import React from "react";
+import { useAppStore } from "../../store/store";
+import RidePost from "./RidePost"
 
-export default function FeedCard() {
+export default function FeedList() {
+    const posts = useAppStore((state) => state.posts);
+
     return (
-        <div className="bg-white p-4 rounded-2xl shadow">
-            <p className="font-semibold">FeedList placeholder 🚴‍♂️</p>
-        </div>
-    );
+        
+    )
 }
