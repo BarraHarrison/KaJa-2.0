@@ -25,5 +25,19 @@ export default function RidePost({
     hasChapeaued,
     comments,
 }: RidePostProps) {
+    const toggleChapeau = useAppStore((state) => state.toggleChapeau);
+    const addComment = useAppStore((state) => state.addComment);
+
+    const [commentInput, setCommentInput] = useState("");
+    const [showComments, setShowComments] = useState(false);
+
+    const handleCommentSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (commentInput.trim()) {
+            addComment(id, commentInput.trim());
+            setCommentInput("");
+        }
+    };
+
 
 }
