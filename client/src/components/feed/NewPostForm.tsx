@@ -16,7 +16,7 @@ export default function NewPostForm() {
 
         addPost({
             title: trimmedTitle,
-            distance: parseFloat(distance) || 0,
+            distance: distance.trim(),
             location: location.trim(),
             date: new Date().toISOString(),
         });
