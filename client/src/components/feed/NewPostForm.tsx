@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Post, useAppStore } from "../../store/store";
 
-export default function NewPostForm(): JSX.Element {
+export default function NewPostForm() {
     const addPost = useAppStore((s) => s.addPost);
     const posts = useAppStore((s) => s.posts);
 
@@ -17,11 +17,10 @@ export default function NewPostForm(): JSX.Element {
 
         setSubmitting(true);
 
-        // generate new id (simple): max id + 1
         const maxId = posts.length ? Math.max(...posts.map((p) => p.id)) : 0;
         const newPost: Post = {
             id: maxId + 1,
-            user: "나", // temporary / local user label in Korean
+            user: "나",
             ride: trimmedTitle,
             distance: distance.trim() || "0 km",
             location: location.trim() || "위치 없음",
