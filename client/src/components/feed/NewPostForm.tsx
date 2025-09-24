@@ -1,22 +1,26 @@
 import React, { useState } from "react";
-import { Post, useAppStore } from "../../store/store";
+import { useAppStore } from "../../store/store";
 
 export default function NewPostForm() {
     const addPost = useAppStore((s) => s.addPost);
-
     const [title, setTitle] = useState("");
     const [distance, setDistance] = useState("");
     const [location, setLocation] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
         const trimmedTitle = title.trim();
         if (!trimmedTitle) return;
 
 
-        // addPost();
+        addPost({
+            title: trimmedTitle,
+            distance: parseFloat(distance) || 0,
+            location: location.trim(),
+            date: new Date().toISOString(),
+        });
 
-        // reset form
         setTitle("");
         setDistance("");
         setLocation("");
