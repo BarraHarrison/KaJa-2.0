@@ -3,7 +3,6 @@ import { Post, useAppStore } from "../../store/store";
 
 export default function NewPostForm() {
     const addPost = useAppStore((s) => s.addPost);
-    const posts = useAppStore((s) => s.posts);
 
     const [title, setTitle] = useState("");
     const [distance, setDistance] = useState("");
@@ -17,20 +16,8 @@ export default function NewPostForm() {
 
         setSubmitting(true);
 
-        const maxId = posts.length ? Math.max(...posts.map((p) => p.id)) : 0;
-        const newPost: Post = {
-            id: maxId + 1,
-            user: "나",
-            ride: trimmedTitle,
-            distance: distance.trim() || "0 km",
-            location: location.trim() || "위치 없음",
-            time: "방금 전",
-            chapeauCount: 0,
-            hasChapeaued: false,
-            comments: [],
-        };
 
-        addPost(newPost);
+        // addPost();
 
         // reset form
         setTitle("");
