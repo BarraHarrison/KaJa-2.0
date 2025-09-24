@@ -7,14 +7,11 @@ export default function NewPostForm() {
     const [title, setTitle] = useState("");
     const [distance, setDistance] = useState("");
     const [location, setLocation] = useState("");
-    const [submitting, setSubmitting] = useState(false);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         const trimmedTitle = title.trim();
         if (!trimmedTitle) return;
-
-        setSubmitting(true);
 
 
         // addPost();
@@ -23,7 +20,6 @@ export default function NewPostForm() {
         setTitle("");
         setDistance("");
         setLocation("");
-        setSubmitting(false);
     };
 
     return (
@@ -57,11 +53,9 @@ export default function NewPostForm() {
             <div className="flex justify-end mt-3">
                 <button
                     type="submit"
-                    disabled={submitting || title.trim() === ""}
                     className={`px-4 py-2 rounded-lg text-white ${title.trim() === "" ? "bg-gray-300 cursor-not-allowed" : "bg-cyan-500 hover:bg-cyan-600"
                         }`}
                 >
-                    {submitting ? "게시중..." : "게시"}
                 </button>
             </div>
         </form>
