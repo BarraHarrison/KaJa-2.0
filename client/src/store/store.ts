@@ -57,10 +57,20 @@ export const useAppStore = create<AppState>((set) => ({
         },
     ],
 
-    addPost: (post) =>
+    addPost: (post: Omit<Post, "id" | "chapeauCount" | "hasChapeaued" | "comments">) =>
         set((state) => ({
-            posts: [...state.posts, post],
+            posts: [
+                {
+                    ...post,
+                    id: state.posts.length + 1,
+                    chapeauCount: 0,
+                    hasChapeaued: false,
+                    comments: [],
+                },
+                ...state.posts,
+            ],
         })),
+
 
     toggleChapeau: (id) =>
         set((state) => ({
