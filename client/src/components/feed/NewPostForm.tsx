@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Post, useAppStore } from "../../store/store";
+import { useAppStore } from "../../store/store";
 
 export default function NewPostForm() {
     const addPost = useAppStore((s) => s.addPost);
@@ -13,21 +13,13 @@ export default function NewPostForm() {
         const trimmedTitle = title.trim();
         if (!trimmedTitle) return;
 
-
-        const newPost: Post = {
-            id: maxId + 1,
+        addPost({
             user: "나",
             ride: trimmedTitle,
-            distance: parseFloat(distance) || 0,
+            distance: distance.trim() || "0 km",
             location: location.trim() || "위치 없음",
             time: "방금 전",
-            chapeauCount: 0,
-            hasChapeaued: false,
-            comments: [],
-        };
-
-        addPost(newPost);
-
+        });
 
         setTitle("");
         setDistance("");
@@ -35,7 +27,10 @@ export default function NewPostForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-4 rounded-2xl shadow mb-4">
+        <form
+            onSubmit={handleSubmit}
+            className="bg-white p-4 rounded-2xl shadow mb-4"
+        >
             <h3 className="text-lg font-semibold mb-2">새 게시물 작성</h3>
 
             <div className="space-y-2">
@@ -65,9 +60,13 @@ export default function NewPostForm() {
             <div className="flex justify-end mt-3">
                 <button
                     type="submit"
-                    className={`px-4 py-2 rounded-lg text-white ${title.trim() === "" ? "bg-gray-300 cursor-not-allowed" : "bg-cyan-500 hover:bg-cyan-600"
+                    disabled={!title.trim()}
+                    className={`px-4 py-2 rounded-lg text-white ${title.trim() === ""
+                        ? "bg-gray-300 cursor-not-allowed"
+                        : "bg-cyan-500 hover:bg-cyan-600"
                         }`}
                 >
+                    게시
                 </button>
             </div>
         </form>
