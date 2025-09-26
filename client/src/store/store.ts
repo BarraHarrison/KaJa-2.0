@@ -12,6 +12,9 @@ export interface Post {
     comments: string[];
 }
 
+export type NewPostInput = Omit<Post, "id" | "chapeauCount" | "hasChapeaued" | "comments">;
+
+
 interface AppState {
     posts: Post[];
     addPost: (post: Post) => void;
