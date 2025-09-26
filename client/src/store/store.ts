@@ -60,19 +60,21 @@ export const useAppStore = create<AppState>((set) => ({
         },
     ],
 
-    addPost: (post: Omit<Post, "id" | "chapeauCount" | "hasChapeaued" | "comments">) =>
-        set((state) => ({
-            posts: [
-                {
-                    ...post,
-                    id: state.posts.length + 1,
-                    chapeauCount: 0,
-                    hasChapeaued: false,
-                    comments: [],
-                },
-                ...state.posts,
-            ],
-        })),
+    addPost: (postInput) =>
+        set((state) => {
+            const newPost: Post = {
+                id: Date.now(),
+                user: postInput.user,
+                ride: postInput.ride,
+                distance: postInput.distance,
+                location: postInput.location,
+                time: postInput.time,
+                chapeauCount: 0,
+                hasChapeaued: false,
+                comments: [],
+            };
+            return { posts: [newPost, ...state.posts] };
+        }),
 
 
     toggleChapeau: (id) =>
