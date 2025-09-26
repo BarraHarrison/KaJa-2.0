@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAppStore } from "../../store/store";
+import { Post, useAppStore } from "../../store/store";
 
 export default function NewPostForm() {
     const addPost = useAppStore((s) => s.addPost);
@@ -14,12 +14,20 @@ export default function NewPostForm() {
         if (!trimmedTitle) return;
 
 
-        addPost({
-            title: trimmedTitle,
-            distance: distance.trim(),
-            location: location.trim(),
-            date: new Date().toISOString(),
-        });
+        const newPost: Post = {
+            id: maxId + 1,
+            user: "나",
+            ride: trimmedTitle,
+            distance: parseFloat(distance) || 0,
+            location: location.trim() || "위치 없음",
+            time: "방금 전",
+            chapeauCount: 0,
+            hasChapeaued: false,
+            comments: [],
+        };
+
+        addPost(newPost);
+
 
         setTitle("");
         setDistance("");
