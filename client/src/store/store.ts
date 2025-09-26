@@ -17,7 +17,7 @@ export type NewPostInput = Omit<Post, "id" | "chapeauCount" | "hasChapeaued" | "
 
 interface AppState {
     posts: Post[];
-    addPost: (post: Post) => void;
+    addPost: (post: NewPostInput) => void;
     toggleChapeau: (id: number) => void;
     addComment: (id: number, comment: string) => void;
 }
